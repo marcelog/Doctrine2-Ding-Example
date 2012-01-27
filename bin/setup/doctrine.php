@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../bootstrap.php';
-require_once "$vendorsDir/php/Doctrine/Symfony/Component/Console/Application.php";
 
 $em = $container->getBean('entityManager');
 $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
@@ -8,7 +7,7 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
     'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($em)
 ));
 
-$cli = new Symfony\Component\Console\Application(
+$cli = new \Symfony\Component\Console\Application(
         'Doctrine Command Line Interface', \Doctrine\ORM\Version::VERSION
 );
 $cli->setCatchExceptions(true);
