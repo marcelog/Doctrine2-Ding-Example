@@ -2,11 +2,13 @@
 namespace Domain\Service;
 
 use Domain\Entity\User as UserEntity;
+use Ding\Container\IContainerAware;
+use Ding\Container\IContainer;
 
 /**
  * @Component(name="userDomainService")
  */
-class User extends AbstractService
+class User extends AbstractService implements IContainerAware
 {
     /**
      * @Resource
@@ -14,10 +16,16 @@ class User extends AbstractService
      */
     protected $userRepository;
 
-    public function createUser($username, $password)
+    /**
+     * @var \Ding\Container\IContainer
+     */
+    private $_container;
+
+   public function createUser($username, $password)
     {
         $user = new UserEntity($username, $password);
         $this->entityManager->persist($user);
+        $this->_container->eventDispatch('newUserCreated', $username);
         return $user;
     }
 
@@ -25,5 +33,11 @@ class User extends AbstractService
     {
         return $this->userRepository->find($id);
     }
-}
+
+    public function setContainer(IContainer $container)
+    {
+        $this->_container = $container;
+    }
+
+ }
 

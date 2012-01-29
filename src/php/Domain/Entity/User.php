@@ -12,12 +12,21 @@ class User
      */
     protected $id;
     /**
-     * @Column(type="string", length="16", nullable="false", unique="true")
+     * @Column(
+        type="string",
+        length="16",
+        nullable="false",
+        unique="true"
+        )
      * @var string
      */
     protected $username;
     /**
-     * @Column(type="string", length="16", nullable="false")
+     * @Column(
+        type="string",
+        length="16",
+        nullable="false"
+        )
      * @var string
      */
     protected $password;

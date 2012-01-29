@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
+  <!-- The Doctrine2 configuration is a separated xml file -->
   <import resource="doctrine.xml"/>
+
+  <!-- The PropertiesHolder bean is what makes it possible for the
+    container to read properties from a standard php.ini file, so we
+    can use them in other bean configurations.
+  -->
   <bean id="PropertiesHolder" class="Ding\Helpers\Properties\PropertiesHelper">
     <property name="locations">
       <array>
