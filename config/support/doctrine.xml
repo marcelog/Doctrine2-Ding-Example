@@ -1,68 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>  
-<beans>  
-  <!--   
-    The entityManager will be used in our domain service to persist   
-    and work with the entities.   
-    -->  
-  <bean id="entityManager"  
-    class="Doctrine\ORM\EntityManager"  
-    factory-method="create">  
-    <constructor-arg><value>${doctrine.db}</value></constructor-arg>  
-    <constructor-arg><ref bean="doctrine-config" /></constructor-arg>  
-    <constructor-arg><ref bean="eventManager" /></constructor-arg>  
-  </bean>  
-  
-  <bean id="eventManager" class="Doctrine\Common\EventManager"/>  
-  
-  <bean id="doctrine-config" class="\Doctrine\ORM\Configuration">  
-    <property name="metaDataCacheImpl">  
-      <ref bean="doctrine-metadata-cache"/>  
-    </property>  
-    <property name="metadataDriverImpl">  
-      <ref bean="doctrine-metadata-driver"/>  
-    </property>  
-    <property name="queryCacheImpl">  
-      <ref bean="doctrine-query-cache"/>  
-    </property>  
-    <property name="proxyDir">  
-      <value>${doctrine.proxy.dir}</value>  
-    </property>  
-    <property name="proxyNamespace">  
-      <value>${doctrine.proxy.namespace}</value>  
-    </property>  
-    <!-- Optional sql logger -->  
-    <!--   
-      <property name="sqlLogger">  
-        <ref bean="sqlLogger"/>  
-      </property>  
-    -->  
-  </bean>  
-  
-  <!-- Optional sql logger -->  
-  <!--   
-    <bean id="sqlLogger"  
-    class="\Doctrine\DBAL\Logging\EchoSQLLogger"/>  
-  -->  
-  
-  <bean id="doctrine-metadata-cache"  
-    class="${doctrine.cache.query}"/>  
-  
-  <bean id="doctrine-query-cache"  
-    class="${doctrine.cache.metadata}"/>  
-  
-  <bean id="doctrine-config-dummy"  
-    class="\Doctrine\ORM\Configuration"/>  
-  
-  <bean id="doctrine-metadata-driver"  
-    factory-bean="doctrine-config-dummy"  
-    factory-method="newDefaultAnnotationDriver">  
-    <constructor-arg>  
-      <array>  
-        <entry><value>  
-          ${doctrine.entity.path}   
-        </value></entry>  
-      </array>  
-    </constructor-arg>  
-  </bean>  
-</beans>  
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans> 
+  <!-- 
+    The entityManager will be used in our domain service to persist 
+    and work with the entities. 
+    -->
+  <bean id="entityManager"
+    class="Doctrine\ORM\EntityManager"
+    factory-method="create">
+    <constructor-arg><value>${doctrine.db}</value></constructor-arg>
+    <constructor-arg><ref bean="doctrine-config" /></constructor-arg>
+    <constructor-arg><ref bean="eventManager" /></constructor-arg>
+  </bean>
+ 
+  <bean id="eventManager" class="Doctrine\Common\EventManager"/>
+ 
+  <bean id="doctrine-config" class="\Doctrine\ORM\Configuration"> 
+    <property name="metaDataCacheImpl"> 
+      <ref bean="doctrine-metadata-cache"/> 
+    </property>
+    <property name="metadataDriverImpl">
+      <ref bean="doctrine-metadata-driver"/>
+    </property>
+    <property name="queryCacheImpl">
+      <ref bean="doctrine-query-cache"/>
+    </property>
+    <property name="proxyDir">
+      <value>${doctrine.proxy.dir}</value>
+    </property>
+    <property name="proxyNamespace">
+      <value>${doctrine.proxy.namespace}</value>
+    </property>
+    <!-- Optional sql logger -->
+    <!-- 
+      <property name="sqlLogger">
+        <ref bean="sqlLogger"/>
+      </property>
+    -->
+  </bean>
+ 
+  <!-- Optional sql logger -->
+  <!--
+    <bean id="sqlLogger"
+    class="\Doctrine\DBAL\Logging\EchoSQLLogger"/>
+  -->
+ 
+  <bean id="doctrine-metadata-cache"
+    class="${doctrine.cache.query}"/>
+ 
+  <bean id="doctrine-query-cache"
+    class="${doctrine.cache.metadata}"/>
+ 
+  <bean id="doctrine-config-dummy"
+    class="\Doctrine\ORM\Configuration"/>
+ 
+  <bean id="doctrine-metadata-driver"
+    factory-bean="doctrine-config-dummy"
+    factory-method="newDefaultAnnotationDriver">
+    <constructor-arg>
+      <array>
+        <entry><value>${doctrine.entity.path}</value></entry>
+      </array>
+    </constructor-arg>
+  </bean>
+</beans>
 
